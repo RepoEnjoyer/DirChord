@@ -1,0 +1,12 @@
+node_modules/
+dist/
+coverage/
+*.tgz
+*.dirchord.html
+*.dirchord.json
+.env
+.env.*
+!.env.example
+.DS_Store
+Thumbs.db
+npm-debug.log*

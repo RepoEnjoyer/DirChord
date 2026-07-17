@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Confidential security report
+    url: https://github.com/RepoEnjoyer/Free-Rep/security
+    about: Use GitHub private vulnerability reporting for sensitive security issues.

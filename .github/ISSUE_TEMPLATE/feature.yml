@@ -1,0 +1,40 @@
+name: Feature request
+description: Propose a focused improvement for DirChord
+title: "feature: "
+labels: [enhancement]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem to solve
+      description: Describe the real workflow or failure this would improve.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed behavior
+    validations:
+      required: true
+  - type: dropdown
+    id: audience
+    attributes:
+      label: Primary use case
+      options:
+        - Game modpacks
+        - Creator asset bundles
+        - Backup verification
+        - Collaborative projects
+        - Release engineering
+        - Other
+    validations:
+      required: true
+  - type: checkboxes
+    id: principles
+    attributes:
+      label: Project principles
+      options:
+        - label: The proposal can work locally without a paid service.
+          required: true
+        - label: The proposal does not require storing file contents in a manifest or report.
+          required: true

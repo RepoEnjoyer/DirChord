@@ -1,0 +1,70 @@
+{
+  "name": "dirchord",
+  "version": "1.0.0",
+  "description": "Create deterministic folder manifests and compare them without uploading your files.",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "bin": {
+    "dirchord": "dist/cli.js"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md"
+  ],
+  "scripts": {
+    "build": "npm run clean && tsc -p tsconfig.json",
+    "check": "npm run lint && npm run typecheck && npm test && npm run build && npm run pack:check",
+    "clean": "node scripts/clean.mjs",
+    "lint": "eslint .",
+    "pack:check": "npm pack --dry-run --ignore-scripts",
+    "prepare": "npm run build",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc -p tsconfig.json --noEmit && tsc -p test/tsconfig.json",
+    "prepublishOnly": "npm run check"
+  },
+  "keywords": [
+    "directory",
+    "manifest",
+    "checksum",
+    "diff",
+    "modpack",
+    "backup",
+    "verification",
+    "local-first"
+  ],
+  "author": "RepoEnjoyer",
+  "license": "MIT",
+  "sideEffects": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RepoEnjoyer/Free-Rep.git"
+  },
+  "bugs": {
+    "url": "https://github.com/RepoEnjoyer/Free-Rep/issues"
+  },
+  "homepage": "https://github.com/RepoEnjoyer/Free-Rep#readme",
+  "engines": {
+    "node": ">=20.19"
+  },
+  "devDependencies": {
+    "@eslint/js": "10.0.1",
+    "@types/node": "24.13.3",
+    "eslint": "10.7.0",
+    "typescript": "6.0.3",
+    "typescript-eslint": "8.64.0",
+    "vitest": "4.1.10"
+  }
+}

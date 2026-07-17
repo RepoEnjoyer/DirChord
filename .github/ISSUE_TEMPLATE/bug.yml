@@ -1,0 +1,51 @@
+name: Bug report
+description: Report reproducible incorrect behavior in DirChord
+title: "bug: "
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: Do not attach a sensitive real manifest. Reproduce the issue with synthetic filenames and content.
+  - type: input
+    id: version
+    attributes:
+      label: DirChord version
+      placeholder: "1.0.0"
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      description: Operating system and Node.js version, without computer usernames or local paths.
+      placeholder: "Windows 11, Node.js 24"
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Reproduction steps
+      description: Use a small synthetic folder when possible.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+    validations:
+      required: true
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Safety check
+      options:
+        - label: I removed private filenames, absolute paths, tokens, and personal information.
+          required: true
+        - label: This is not a confidential security vulnerability.
+          required: true

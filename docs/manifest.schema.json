@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/RepoEnjoyer/Free-Rep/main/docs/manifest.schema.json",
+  "title": "DirChord v1 manifest",
+  "type": "object",
+  "required": ["format", "createdBy", "options", "summary", "entries"],
+  "additionalProperties": false,
+  "properties": {
+    "format": { "const": "dirchord/v1" },
+    "createdBy": { "type": "string", "minLength": 1, "maxLength": 200 },
+    "options": {
+      "type": "object",
+      "required": ["algorithm", "ignores", "symlinks"],
+      "additionalProperties": false,
+      "properties": {
+        "algorithm": { "const": "sha256" },
+        "ignores": {
+          "type": "array",
+          "maxItems": 2000,
+          "items": { "type": "string" }
+        },
+        "symlinks": { "const": "hash-target-without-following" }
+      }
+    },
+    "summary": {
+      "type": "object",
+      "required": ["files", "symlinks", "bytes"],
+      "additionalProperties": false,
+      "properties": {
+        "files": { "type": "integer", "minimum": 0 },
+        "symlinks": { "type": "integer", "minimum": 0 },
+        "bytes": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "entries": {
+      "type": "array",
+      "maxItems": 2000000,
+      "items": {
+        "oneOf": [
+          {
+            "type": "object",
+            "required": ["type", "path", "size", "sha256"],
+            "additionalProperties": false,
+            "properties": {
+              "type": { "const": "file" },
+              "path": { "$ref": "#/$defs/path" },
+              "size": { "type": "integer", "minimum": 0, "maximum": 1099511627776 },
+              "sha256": { "$ref": "#/$defs/sha256" }
+            }
+          },
+          {
+            "type": "object",
+            "required": ["type", "path", "targetSha256"],
+            "additionalProperties": false,
+            "properties": {
+              "type": { "const": "symlink" },
+              "path": { "$ref": "#/$defs/path" },
+              "targetSha256": { "$ref": "#/$defs/sha256" }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "$defs": {
+    "path": { "type": "string", "minLength": 1, "maxLength": 4096 },
+    "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" }
+  }
+}
